@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ripple — Support</title>
+<style>
+  :root{
+    --bg:#1b1d2e; --card:#23263a; --ink:#f2efe8; --muted:#a9adc4;
+    --ember:#caa56a; --line:#33374f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#1b1d2e,#101120);
+    color:var(--ink); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    min-height:100vh;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:56px 24px 80px}
+  header{display:flex; align-items:center; gap:14px; margin-bottom:8px}
+  .dot{width:42px;height:42px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #e7c98c, var(--ember));
+    box-shadow:0 0 24px rgba(202,165,106,.45)}
+  h1{font-size:34px; margin:0; letter-spacing:-.5px}
+  .sub{color:var(--muted); margin:4px 0 36px}
+  h2{font-size:20px; margin:36px 0 10px}
+  p{margin:0 0 14px; color:#e6e3da}
+  a{color:var(--ember); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .card{background:var(--card); border:1px solid var(--line);
+    border-radius:16px; padding:22px 24px; margin:14px 0}
+  .faq{border-bottom:1px solid var(--line); padding:16px 0}
+  .faq:last-child{border-bottom:none}
+  .q{font-weight:600; margin:0 0 6px}
+  .a{color:var(--muted); margin:0}
+  .contact{display:inline-block; margin-top:8px; background:var(--ember);
+    color:#1b1d2e; font-weight:600; padding:12px 22px; border-radius:999px}
+  .contact:hover{text-decoration:none; opacity:.92}
+  footer{margin-top:48px; color:var(--muted); font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="dot"></div>
+    <h1>Ripple Support</h1>
+  </header>
+  <p class="sub">A focus timer that takes breaks as seriously as work.</p>
+
+  <div class="card">
+    <p style="margin:0 0 12px">Need help or have feedback? We read every message.</p>
+    <a class="contact" href="mailto:support@yourdomain.com">Email Support</a>
+    <p style="color:var(--muted); font-size:13px; margin:14px 0 0">
+      We aim to reply within 2 business days.
+    </p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="card">
+    <div class="faq">
+      <p class="q">Do I need an account to use Ripple?</p>
+      <p class="a">No. Ripple has no login or account. Every feature works the moment you open the app.</p>
+    </div>
+    <div class="faq">
+      <p class="q">How do I change my focus and break lengths?</p>
+      <p class="a">Tap the gear icon in the top-right to open Settings. Use the steppers to adjust focus, short break, and long break durations, and how often a long break occurs.</p>
+    </div>
+    <div class="faq">
+      <p class="q">What are the four break types?</p>
+      <p class="a">Memory Photo (a full-screen photo from your library), Music (a track from your own library), Guided Breathing (a 4-4-4-4 box-breathing animation), and Dark Rest (the screen dims to rest your eyes).</p>
+    </div>
+    <div class="faq">
+      <p class="q">Why does Ripple ask for Photos or Music access?</p>
+      <p class="a">Only so it can show a photo you choose, or play a song you choose, during a break. These are requested only when you tap those break types, and nothing ever leaves your device.</p>
+    </div>
+    <div class="faq">
+      <p class="q">Is my data collected or uploaded?</p>
+      <p class="a">No. Ripple makes no network calls and collects no data. Your photos, music, and settings stay on your device. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    </div>
+    <div class="faq">
+      <p class="q">How do I revoke a permission I granted?</p>
+      <p class="a">Open iOS Settings &rarr; Privacy &amp; Security, then choose Photos or Media &amp; Apple Music and adjust Ripple's access. The core timer works without any permissions.</p>
+    </div>
+    <div class="faq">
+      <p class="q">The completion sound isn't playing.</p>
+      <p class="a">Check that your device isn't in silent mode and that a sound other than "Silence" is selected in Settings &rarr; Completion Sound. Selecting a sound plays a quick preview.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 NS Innovation Unlimited &middot;
+    <a href="privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+</body>
+</html>
