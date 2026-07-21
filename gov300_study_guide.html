@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOVT 300 — The World Cup Study Guide</title>
+<style>
+  :root{
+    --pitch:#0b6b3a; --pitch-dark:#084f2b; --pitch-deep:#063b20;
+    --gold:#f4c430; --gold-soft:#ffe89a;
+    --ink:#12241a; --paper:#f7faf6; --card:#ffffff;
+    --line:#d7e4d5; --muted:#5b6b60;
+    --accent:#1e88e5; --danger:#d64545; --ok:#2e9e5b;
+    --shadow:0 6px 22px rgba(6,59,32,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--paper); line-height:1.6;
+  }
+  a{color:var(--accent)}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+
+  /* ---- Header ---- */
+  header.hero{
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255,255,255,.10), transparent 40%),
+      repeating-linear-gradient(90deg, var(--pitch) 0 60px, var(--pitch-dark) 60px 120px);
+    color:#fff; padding:44px 0 34px; border-bottom:6px solid var(--gold);
+  }
+  header.hero .wrap{position:relative}
+  .badge{display:inline-block;background:var(--gold);color:#3a2c00;font-weight:800;
+    padding:5px 12px;border-radius:999px;font-size:.78rem;letter-spacing:.4px;text-transform:uppercase}
+  header.hero h1{font-size:2.15rem;margin:.5em 0 .15em;line-height:1.15}
+  header.hero p.sub{font-size:1.06rem;opacity:.95;margin:.2em 0;max-width:640px}
+  .ball{font-size:1.4rem}
+
+  /* ---- Pep talk box ---- */
+  .pep{background:linear-gradient(135deg,#fffdf3,#fff7dc);border:1px solid var(--gold);
+    border-left:6px solid var(--gold);border-radius:14px;padding:18px 20px;margin:26px 0;box-shadow:var(--shadow)}
+  .pep h2{margin:.1em 0 .4em;font-size:1.15rem;color:#7a5c00}
+
+  /* ---- Nav / table of contents ---- */
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:22px 0;box-shadow:var(--shadow)}
+  nav.toc h2{margin:.1em 0 .5em;font-size:1rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+  nav.toc ol{margin:0;padding-left:1.2em;columns:2;column-gap:26px}
+  @media(max-width:620px){nav.toc ol{columns:1}}
+  nav.toc li{margin:.2em 0}
+  nav.toc a{text-decoration:none;color:var(--pitch-dark);font-weight:600}
+  nav.toc a:hover{text-decoration:underline}
+
+  /* ---- Sections ---- */
+  section.topic{margin:16px 0;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
+  .topic > button.head{
+    width:100%;text-align:left;border:0;background:var(--card);cursor:pointer;
+    padding:16px 20px;display:flex;align-items:center;gap:12px;font-size:1.12rem;font-weight:800;color:var(--pitch-dark)}
+  .topic > button.head:hover{background:#f2f8f0}
+  .topic .num{background:var(--pitch);color:#fff;min-width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem}
+  .topic .chev{margin-left:auto;transition:transform .25s;color:var(--muted);font-size:1.1rem}
+  .topic.open .chev{transform:rotate(90deg)}
+  .topic .body{display:none;padding:2px 22px 22px}
+  .topic.open .body{display:block}
+  .topic h3{color:var(--pitch-dark);margin:1.1em 0 .3em;font-size:1.05rem}
+  .topic h4{margin:1em 0 .2em;font-size:.98rem;color:#234}
+
+  /* ---- Soccer analogy callout ---- */
+  .kick{background:#eef7ff;border:1px solid #cfe6fb;border-left:6px solid var(--accent);border-radius:12px;padding:12px 16px;margin:12px 0}
+  .kick .tag{font-weight:800;color:#0b5fa4;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
+  .exam{background:#fff4f4;border:1px solid #f4d0d0;border-left:6px solid var(--danger);border-radius:12px;padding:10px 16px;margin:12px 0;font-size:.95rem}
+  .exam .tag{font-weight:800;color:#a63030;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+  .tip{background:#eefaf1;border:1px solid #c9ecd4;border-left:6px solid var(--ok);border-radius:12px;padding:10px 16px;margin:12px 0;font-size:.95rem}
+  .tip .tag{font-weight:800;color:#1c7a42;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+  .watch{background:#fffbe9;border:1px solid #f2e3ac;border-left:6px solid var(--gold);border-radius:12px;padding:10px 16px;margin:12px 0;font-size:.95rem}
+  .watch .tag{font-weight:800;color:#8a6d00;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+
+  table.t{width:100%;border-collapse:collapse;margin:12px 0;font-size:.93rem}
+  table.t th,table.t td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  table.t th{background:var(--pitch);color:#fff;font-weight:700}
+  table.t tr:nth-child(even) td{background:#f4f8f3}
+  code{background:#eef1ee;padding:1px 6px;border-radius:6px;font-size:.9em}
+  .pill{display:inline-block;background:var(--gold-soft);border:1px solid var(--gold);border-radius:999px;padding:1px 10px;font-size:.82rem;font-weight:700;color:#6b5200;margin:2px}
+
+  /* ---- Flashcards ---- */
+  .deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+  .fc{perspective:1000px;height:150px;cursor:pointer}
+  .fc-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .fc.flip .fc-inner{transform:rotateY(180deg)}
+  .fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line)}
+  .fc-front{background:linear-gradient(135deg,var(--pitch),var(--pitch-dark));color:#fff;font-weight:800;font-size:1rem}
+  .fc-back{background:#fff;color:var(--ink);transform:rotateY(180deg);font-size:.86rem;overflow:auto}
+  .fc-hint{position:absolute;bottom:6px;right:10px;font-size:.62rem;opacity:.7}
+
+  /* ---- Quiz ---- */
+  .quiz{margin:14px 0}
+  .q{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:#fff}
+  .q .stem{font-weight:700;margin-bottom:8px}
+  .q .opts{list-style:none;margin:0;padding:0}
+  .q .opts li{border:1px solid var(--line);border-radius:9px;padding:8px 12px;margin:6px 0;cursor:pointer;transition:.15s}
+  .q .opts li:hover{background:#f2f8f0}
+  .q .opts li.correct{background:#e4f7ea;border-color:var(--ok);font-weight:600}
+  .q .opts li.wrong{background:#fdeaea;border-color:var(--danger)}
+  .q .why{display:none;margin-top:10px;padding:10px 12px;background:#eef7ff;border-radius:9px;border:1px solid #cfe6fb;font-size:.92rem}
+  .q.answered .why{display:block}
+  .q .src{font-size:.74rem;color:var(--muted);margin-top:6px}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .btn{background:var(--pitch);color:#fff;border:0;border-radius:9px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:.9rem}
+  .btn.ghost{background:#fff;color:var(--pitch-dark);border:1px solid var(--pitch)}
+  .btn:hover{filter:brightness(1.05)}
+
+  footer{background:var(--pitch-deep);color:#dfeee6;padding:26px 0;margin-top:34px;font-size:.9rem}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+  .print{margin:10px 0}
+  @media print{
+    .topic .body{display:block!important}
+    .topic .chev,nav.toc,.controls,.fc-hint,footer .print{display:none}
+    header.hero{color:#000;background:#fff;border-bottom:3px solid #000}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">GOVT 300 · Research Methods · GMU</span>
+    <h1><span class="ball">⚽</span> The World Cup Guide to Acing the Theory</h1>
+    <p class="sub">Every concept, definition, and multiple-choice pattern the exam loves — explained through soccer, in plain English, with zero scary math required. You've got this.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="pep">
+    <h2>Read this first (30 seconds) 🫶</h2>
+    <p>Here's the honest, encouraging truth: <strong>the theory half of this exam is a memory-and-vocabulary game, not a math game.</strong> The professor reuses the same ~40 ideas over and over across every past exam. Learn those ideas once — the way you'd learn the offside rule — and the multiple choice and definition questions become nearly automatic.</p>
+    <p>This guide uses the World Cup as one big analogy machine. A <em>variable</em> is just a stat on a player's card. A <em>hypothesis</em> is a bold prediction about a match. A <em>Type I error</em> is the ref showing a red card to an innocent player. You already think this way about soccer — we're just borrowing the wiring. Tap any section to open it. Flip the flashcards. Try the practice questions (they're pulled from real past exams). Breathe. Let's play.</p>
+  </div>
+
+  <nav class="toc">
+    <h2>Match Program — jump to a section</h2>
+    <ol>
+      <li><a href="#s1">The Scientific Method (the rulebook)</a></li>
+      <li><a href="#s2">Research Ethics (fair play &amp; the ref)</a></li>
+      <li><a href="#s3">Variables &amp; Causation (the player stats)</a></li>
+      <li><a href="#s4">Writing Hypotheses (bold predictions)</a></li>
+      <li><a href="#s5">Levels of Measurement (kinds of stats)</a></li>
+      <li><a href="#s6">Samples &amp; Inference (scouting the squad)</a></li>
+      <li><a href="#s7">Distributions &amp; Z-scores (the bell curve)</a></li>
+      <li><a href="#s8">Confidence Intervals (the honest guess)</a></li>
+      <li><a href="#s9">Hypothesis Testing (VAR &amp; the two errors)</a></li>
+      <li><a href="#s10">Relationships: existence, form, degree, significance</a></li>
+      <li><a href="#s11">Chi-Square (the crosstab)</a></li>
+      <li><a href="#s12">Measures of Association (how strong?)</a></li>
+      <li><a href="#s13">t-tests &amp; ANOVA (comparing squads)</a></li>
+      <li><a href="#s14">Correlation &amp; Regression (the trend line)</a></li>
+      <li><a href="#s15">Bonus trivia the prof loves</a></li>
+      <li><a href="#s16">🏆 One-page cheat sheet</a></li>
+      <li><a href="#s17">🎯 Final practice test</a></li>
+    </ol>
+  </nav>
+
+  <div class="controls">
+    <button class="btn" onclick="openAll()">Open all sections</button>
+    <button class="btn ghost" onclick="closeAll()">Collapse all</button>
+    <button class="btn ghost" onclick="window.print()">🖨️ Print / save as PDF</button>
+  </div>
+
+</div>
+
+<div class="wrap" id="content"></div>
+
+<footer>
+  <div class="wrap">
+    <div>⚽ Made for GOVT 300 · Study smart, stay calm, and trust your prep.</div>
+    <div class="print">You allowed one 8.5×11 double-sided cheat sheet in the exam — build it from Section 16.</div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONTENT DATA
+   ========================================================= */
+const SECTIONS = [
+/* 1 ------------------------------------------------------ */
+{id:'s1',n:1,title:'The Scientific Method — the rulebook of the game',html:`
+<p>Political science tries to answer big questions (Why do people vote? Does democracy make government more effective?) using the same disciplined approach the natural sciences use. The exam wants you to know <em>what makes knowledge "scientific."</em></p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Think of the scientific method as <strong>FIFA's official rulebook</strong>. Anyone, anywhere, can read the rules, referee the same way, and get the same call. That shared, public, repeatable standard is exactly what separates science from someone just shouting a hot take from the stands.</div>
+
+<h3>The core qualities of scientific knowledge</h3>
+<table class="t">
+<tr><th>Term</th><th>Plain-English meaning</th><th>Soccer memory hook</th></tr>
+<tr><td><strong>Empirical</strong></td><td>Based on observation and evidence you can actually see/measure — not opinion or feelings.</td><td>Goals on the scoreboard, not vibes.</td></tr>
+<tr><td><strong>Transmissible</strong></td><td>You spell out your methods in enough detail that <em>someone else could repeat your exact steps.</em></td><td>Publishing the full match tactics so any coach could run the same play.</td></tr>
+<tr><td><strong>Replicable</strong></td><td>If someone repeats your steps, they get similar results.</td><td>Run the same drill, get the same outcome.</td></tr>
+<tr><td><strong>Intersubjectivity</strong></td><td>Because perfect objectivity is impossible, we protect against bias by making knowledge transmissible + replicable so <em>others can check us.</em></td><td>VAR: multiple officials review the same footage so one person's bias can't decide the game.</td></tr>
+<tr><td><strong>Nonnormative</strong></td><td>Describes what <em>is</em>, not what <em>ought</em> to be. (Normative = value-laden "should" statements.)</td><td>"Team A scored more" (nonnormative) vs. "Team A deserved to win" (normative).</td></tr>
+<tr><td><strong>Determinism</strong></td><td>Events have causes we can discover.</td><td>Every goal has a cause — a pass, a run, a mistake.</td></tr>
+<tr><td><strong>Parsimony</strong></td><td>When two explanations both work, prefer the <em>simpler</em> one (fewer moving parts). "The simplest solution is best."</td><td>The tidy tactical explanation beats a wild 7-part conspiracy theory.</td></tr>
+<tr><td><strong>Falsifiability</strong></td><td>A scientific claim must be <em>testable in a way that could prove it wrong.</em></td><td>A prediction you can actually check on the pitch.</td></tr>
+<tr><td><strong>Explanation / prediction</strong></td><td>Good science improves understanding and makes observable predictions — but never claims a <em>final</em>, unquestionable answer.</td><td>A great pundit explains AND predicts, but stays humble.</td></tr>
+</table>
+
+<div class="exam"><span class="tag">On the exam</span> "Scientists believe their findings are based on ______, systematic observation" → <strong>objective</strong>. "Parsimony refers to" → <strong>the simplest explanation</strong>. "Knowledge that is evaluative, value-laden, prescribing what ought to be" → <strong>normative</strong>. "Transmissible means…" → <strong>methods spelled out so others can replicate</strong>. "An adequate scientific explanation does all EXCEPT" → <strong>provides a final answer</strong> (science never claims to be final).</div>
+
+<h3>The "4 Hallmarks" of the scientific method</h3>
+<p>If asked to list them: <span class="pill">Empiricism</span> <span class="pill">Intersubjectivity</span> <span class="pill">Explanation</span> <span class="pill">Determinism</span>. Together they make science a trustworthy way to <em>acquire knowledge</em>, because claims are evidence-based, checkable by others, aimed at explaining, and assume causes exist.</p>
+
+<h3>The 5 characteristics of a <em>useful theory</em></h3>
+<p>A theory is a set of connected statements that explain a phenomenon. A good one is: <strong>(1) empirical/testable, (2) parsimonious (simple), (3) general (applies broadly), (4) falsifiable, and (5) explanatory/predictive (leads to hypotheses).</strong> Hook: a great tactical <em>philosophy</em> (like "possession wins games") is simple, applies to many teams, can be tested, and predicts outcomes.</p>
+`,
+cards:[
+ ['Empirical','Based on real, observable evidence you can measure — not opinion.'],
+ ['Transmissible','Methods spelled out in enough detail that others can repeat your exact steps.'],
+ ['Intersubjectivity','Guarding against bias by making work transmissible + replicable so others can verify it (since pure objectivity is impossible).'],
+ ['Parsimony','Prefer the simplest explanation when two explanations both work. "Simplest solution is best."'],
+ ['Normative knowledge','Value-laden claims about what OUGHT to be (opposite of nonnormative / empirical).'],
+ ['Falsifiability','A claim must be testable in a way that could prove it wrong.'],
+ ['Determinism','The assumption that events have discoverable causes.']
+]},
+
+/* 2 ------------------------------------------------------ */
+{id:'s2',n:2,title:'Research Ethics — fair play and the referee',html:`
+<p>Because political science studies <em>people</em>, researchers must protect them. This is one of the most reliable exam topics — the professor loves giving you a shocking real study and asking you to critique it using the <strong>Belmont Report</strong>.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Ethics rules are the <strong>referee and fair-play code</strong>. You can play hard and try to win (do great research), but you may never injure a player to do it. The Belmont Report is the ref's rulebook for protecting the humans on the field.</div>
+
+<h3>The Belmont Report — 3 principles (memorize these!)</h3>
+<table class="t">
+<tr><th>Principle</th><th>What it demands</th><th>Hook</th></tr>
+<tr><td><strong>Respect for Persons</strong></td><td>Treat people as <em>autonomous</em> (they choose freely), and give <em>extra protection</em> to those with reduced autonomy (children, prisoners, the ill). Requires <strong>informed consent</strong>.</td><td>Players choose to take the field; you protect the youth academy kids most.</td></tr>
+<tr><td><strong>Beneficence</strong></td><td>(1) Do no harm, and (2) maximize benefits while minimizing risks.</td><td>The medical staff: protect players, weigh risk vs. reward before anyone plays hurt.</td></tr>
+<tr><td><strong>Justice</strong></td><td>Distribute the benefits and burdens of research <em>fairly</em>. Don't pick subjects just because they're easy, poor, or powerless.</td><td>Don't make only the reserve team run every dangerous fitness test.</td></tr>
+</table>
+
+<h4>Informed consent — 3 required elements</h4>
+<p><span class="pill">Information</span> <span class="pill">Comprehension</span> <span class="pill">Voluntariness</span> — the person gets the facts (including the research's <em>purpose</em>), understands them, and agrees freely with no coercion.</p>
+
+<div class="exam"><span class="tag">On the exam</span> "Which is necessary for informed consent?" → <strong>a description of the purpose of the research</strong> (NOT the statistical analyses, NOT the researcher's publication list).</div>
+
+<h3>The famous cautionary-tale studies</h3>
+<table class="t">
+<tr><th>Study</th><th>What went wrong</th><th>Belmont principles violated</th></tr>
+<tr><td><strong>Tuskegee Syphilis Study</strong></td><td>Black men with syphilis were left untreated for decades to observe the disease — deceived, denied available cure.</td><td>All three (no consent, real harm, exploited a vulnerable group).</td></tr>
+<tr><td><strong>Willowbrook Hepatitis Study</strong></td><td>Institutionalized disabled children were deliberately infected with hepatitis.</td><td>Respect (children can't consent), Beneficence (deliberate harm), Justice (chosen for availability).</td></tr>
+<tr><td><strong>San Antonio Contraceptive Study</strong></td><td>Poor, mostly non-English-speaking women were given placebos without knowing — some became pregnant.</td><td>Respect (no true consent), Beneficence (harm: pregnancy), Justice (exploited the poor).</td></tr>
+<tr><td><strong>The Monster Study</strong></td><td>Orphan children were belittled to induce stuttering in a "speech therapy" experiment.</td><td>Respect (vulnerable children), Beneficence (psychological harm), Justice (easy targets).</td></tr>
+<tr><td><strong>Tea Room Trade</strong></td><td>Researcher observed private behavior and tracked subjects without consent — huge privacy violation.</td><td>Respect (deception, no consent).</td></tr>
+</table>
+<div class="tip"><span class="tag">How to answer a critique question</span> Walk through <strong>all three principles in order</strong> — Respect for Persons, Beneficence, Justice — and say, for each, exactly how the study violated it. That structure earns the points every time.</div>
+`,
+cards:[
+ ['Belmont Report — 3 principles','Respect for Persons, Beneficence, Justice.'],
+ ['Respect for Persons','Honor autonomy + protect those with diminished autonomy; requires informed consent.'],
+ ['Beneficence','Do no harm; maximize benefits and minimize risks.'],
+ ['Justice','Fairly distribute benefits & burdens; don\'t exploit easy/vulnerable subjects.'],
+ ['Informed consent — 3 elements','Information, Comprehension, Voluntariness.'],
+ ['Needed for informed consent','A description of the PURPOSE of the research.'],
+ ['Tuskegee / Willowbrook / Monster Study','Classic unethical human-subjects studies used to test Belmont critique.']
+]},
+
+/* 3 ------------------------------------------------------ */
+{id:'s3',n:3,title:'Variables & Causation — reading the player stats',html:`
+<p>A <strong>variable</strong> is any characteristic that can take different values. The exam constantly tests the roles variables play in an explanation.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Variables are the <strong>stats on a player's card</strong>: goals, assists, position, nationality. Some stats you think <em>cause</em> others — more training (cause) → more goals (effect). That cause-and-effect thinking is the whole game.</div>
+
+<table class="t">
+<tr><th>Variable</th><th>Meaning</th><th>Soccer example</th></tr>
+<tr><td><strong>Independent variable (IV)</strong></td><td>The presumed <em>cause</em> — what you change or what does the explaining.</td><td>Hours of training per week.</td></tr>
+<tr><td><strong>Dependent variable (DV)</strong></td><td>The presumed <em>effect</em> — the thing being explained; it "depends on" the IV.</td><td>Goals scored this season.</td></tr>
+<tr><td><strong>Intervening variable</strong></td><td>Sits <em>between</em> IV and DV in the causal chain (IV → intervening → DV).</td><td>Training → fitness level → goals.</td></tr>
+<tr><td><strong>Antecedent variable</strong></td><td>Comes <em>before</em> the IV in the chain.</td><td>Club budget → training → goals.</td></tr>
+<tr><td><strong>Conditional (moderating) variable</strong></td><td>Changes the strength/direction of the IV–DV relationship depending on its value.</td><td>Training helps goals more for forwards than for goalkeepers.</td></tr>
+</table>
+
+<h3>Spuriousness — the sneaky fake relationship</h3>
+<p>A <strong>source of spuriousness</strong> is a third variable that causes <em>both</em> the IV and the DV, making them look related when neither actually causes the other. Remove the hidden cause and the relationship vanishes.</p>
+<div class="kick"><span class="tag">⚽ The classic example</span> Ice-cream sales and drownings rise together — but ice cream doesn't cause drowning. <strong>Hot weather</strong> causes both. Soccer version: teams in red kits seem to win more, but really the <em>big-budget clubs</em> (hidden cause) both wear red traditions AND buy better players.</div>
+
+<h3>Operationalization</h3>
+<p><strong>Operationalization</strong> = the process of turning an abstract <em>concept</em> into something you can actually observe and measure (a specific indicator).</p>
+<div class="kick"><span class="tag">⚽ The analogy</span> "World-class striker" is a fuzzy concept. To <em>operationalize</em> it, you pick measurable indicators: goals per 90 minutes, shot conversion %, assists. Now it's countable.</div>
+
+<div class="exam"><span class="tag">On the exam</span> "A variable presumed to cause a change in another" → <strong>Independent variable</strong>. "A variable that seems to cause both the IV and DV" → <strong>source of spuriousness</strong>. "The process of selecting observable phenomena to represent concepts" → <strong>operationalization</strong>. "A phenomenon we think will help explain the behavior that interests us" → <strong>independent variable</strong>.</div>
+`,
+cards:[
+ ['Independent variable (IV)','The presumed cause — what does the explaining.'],
+ ['Dependent variable (DV)','The presumed effect — the thing being explained.'],
+ ['Intervening variable','Sits between IV and DV in the causal chain.'],
+ ['Source of spuriousness','A third variable causing BOTH the IV and DV, faking a relationship.'],
+ ['Operationalization','Turning an abstract concept into a measurable, observable indicator.'],
+ ['Antecedent variable','A variable that comes before the IV in the causal chain.']
+]},
+
+/* 4 ------------------------------------------------------ */
+{id:'s4',n:4,title:'Writing Hypotheses — making a bold prediction',html:`
+<p>A <strong>hypothesis</strong> is a testable prediction that differences in an <em>independent</em> variable correspond to differences in a <em>dependent</em> variable. A <strong>research (alternative) hypothesis</strong> that names a <em>direction</em> is the bread and butter here.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> A hypothesis is a <strong>bold pre-match prediction</strong>: "The more possession a team has, the more goals they'll score." It names a cause (possession), an effect (goals), and a direction (more → more). The <strong>null hypothesis</strong> is the boring skeptic's version: "Possession has <em>no</em> effect on goals."</p></div>
+
+<h3>The 5 recurring "fix this bad hypothesis" flaws</h3>
+<p>The professor gives you broken hypotheses and asks you to name the flaw and fix it. There are only a handful of flaws — learn them and it's free points.</p>
+<table class="t">
+<tr><th>Flaw</th><th>What it looks like</th><th>The fix</th></tr>
+<tr><td><strong>Normative statement</strong></td><td>Says what <em>ought</em> to be. "Minorities <em>should</em> be better represented."</td><td>Rewrite as a testable IV→DV claim about what <em>is</em>.</td></tr>
+<tr><td><strong>Tautology</strong></td><td>Both "variables" are really the <em>same</em> thing. "The angrier someone is, the more hostile they are."</td><td>Relate the variable to a genuinely <em>different</em> second variable.</td></tr>
+<tr><td><strong>Uses proper names</strong></td><td>Names specific people/countries, so it can't generalize. "The US is more conservative than Canada."</td><td>Restate with a general property ("Presidential systems are more…than parliamentary systems").</td></tr>
+<tr><td><strong>Specifies categories of the DV</strong></td><td>Compares outcomes instead of varying the cause. "Older people vote conservative rather than liberal."</td><td>Vary the IV: "The older someone gets, the more likely they vote conservative."</td></tr>
+<tr><td><strong>No direction / no relationship</strong></td><td>"Education is correlated with political knowledge." (Which way?)</td><td>State the direction: "The more education, the greater the political knowledge."</td></tr>
+</table>
+
+<div class="tip"><span class="tag">Recipe for a good hypothesis</span> "The more/less [IV], the more/less [DV]." It's general (no proper names), directional, empirical (not "should"), and relates <em>two different</em> variables. Example: "The more decentralized a country's government, the more effective it tends to be."</div>
+`,
+cards:[
+ ['Hypothesis','A testable prediction that changes in the IV correspond to changes in the DV.'],
+ ['Null hypothesis','The skeptic\'s claim that there is NO relationship between the variables.'],
+ ['Research (alternative) hypothesis','A prediction stating a specific directional relationship between two variables.'],
+ ['Tautology (flaw)','The two "variables" are really the same thing — fix by using a truly different second variable.'],
+ ['Normative (flaw)','States what OUGHT to be — fix by rewriting as a testable "what is" claim.'],
+ ['Proper-names (flaw)','Names specific people/places so it can\'t generalize — fix with a general property.'],
+ ['Categories-of-DV (flaw)','Compares DV outcomes instead of varying the IV — fix by varying the cause.']
+]},
+
+/* 5 ------------------------------------------------------ */
+{id:'s5',n:5,title:'Levels of Measurement — the four kinds of stats',html:`
+<p>Every variable is measured at one of these levels, and the level decides which statistics you're allowed to use. This appears on <em>every single exam</em>, both as a definition and as "classify these examples."</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Different player stats carry different amounts of information — jersey <em>colors</em> tell you less than <em>goals scored</em>. Same idea here, from least to most information: Nominal → Ordinal → Interval → Ratio.</div>
+
+<table class="t">
+<tr><th>Level</th><th>What it does</th><th>Soccer example</th></tr>
+<tr><td><strong>Nominal</strong></td><td>Names/categories only. No order. Just "different."</td><td>Team name, player position, nationality, region.</td></tr>
+<tr><td><strong>Ordinal</strong></td><td>Ordered categories, but gaps between them aren't equal/measurable.</td><td>Finish: group stage &lt; round of 16 &lt; final. Or "strongly disagree…strongly agree."</td></tr>
+<tr><td><strong>Interval</strong></td><td>Ordered with <em>equal, meaningful gaps</em>, but no true zero.</td><td>Temperature at kickoff (0° isn't "no temperature").</td></tr>
+<tr><td><strong>Ratio</strong></td><td>Equal gaps AND a true zero (zero means "none"). The most information.</td><td>Goals scored, minutes played, number of caps (0 = truly none).</td></tr>
+<tr><td><strong>Dichotomy</strong></td><td>A special case: exactly two categories (yes/no, win/lose).</td><td>Qualified or not? Won the match or not?</td></tr>
+</table>
+
+<div class="tip"><span class="tag">Quick trick to classify</span> Ask two questions: <strong>(1) Is there a real order?</strong> No → Nominal (or Dichotomy if only 2 options). Yes → <strong>(2) Is there a true zero meaning "none of it"?</strong> Yes → Ratio. No → Interval or Ordinal (equal measured gaps = Interval; ranked-but-fuzzy gaps = Ordinal).</div>
+
+<div class="exam"><span class="tag">On the exam</span> "State where someone was born" → <strong>Nominal</strong>. "Lower/middle/upper class" or agree-scales → <strong>Ordinal</strong>. "Number of siblings / goals / Senators voting yes" → <strong>Ratio</strong>. "Approve vs. disapprove" or "won vs. lost" → <strong>Dichotomy</strong>. The <strong>variation ratio (v-ratio)</strong> works at <em>all</em> levels ("all of the above"). "Which level captures the most information?" → <strong>Ratio</strong>.</div>
+<div class="watch"><span class="tag">Watch the wording</span> The prof sometimes counts speed/time/GDP as <strong>Interval</strong> (2 pts) rather than Ratio (1 pt), arguing a "zero" would mean the thing didn't happen. If a question says "defend your answer," briefly justify whether a true zero exists.</div>
+`,
+cards:[
+ ['Nominal','Names/categories with no order (team, position, region).'],
+ ['Ordinal','Ordered categories but unequal/unmeasured gaps (class rank, agree-scales).'],
+ ['Interval','Equal, meaningful gaps but NO true zero (temperature).'],
+ ['Ratio','Equal gaps AND a true zero = none (goals, counts). Most information.'],
+ ['Dichotomy','A variable with exactly two categories (win/lose, yes/no).'],
+ ['V-ratio (variation ratio)','A measure of spread usable at ALL levels of measurement.']
+]},
+
+/* 6 ------------------------------------------------------ */
+{id:'s6',n:6,title:'Samples & Statistical Inference — scouting the whole league',html:`
+<p>We rarely measure everyone, so we study a <em>sample</em> and use it to make smart guesses about the whole <em>population</em>. That guessing process is <strong>statistical inference.</strong></p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> You can't watch <em>every</em> youth player on Earth. So you scout a <strong>sample</strong> and infer what the whole <strong>population</strong> of players is like. A scout's estimate from the sample is a <em>statistic</em>; the true, whole-population truth is a <em>parameter</em>.</div>
+
+<table class="t">
+<tr><th>Term</th><th>Meaning</th><th>Hook</th></tr>
+<tr><td><strong>Population</strong></td><td>The <em>entire</em> group you care about.</td><td>Every professional player alive.</td></tr>
+<tr><td><strong>Sample</strong></td><td>A <em>subset</em> of the population you actually measure. ("A sample is a subset of a population.")</td><td>The 26 players you scouted.</td></tr>
+<tr><td><strong>Parameter</strong></td><td>A number describing the <em>population</em> (usually unknown).</td><td>True average height of ALL players.</td></tr>
+<tr><td><strong>Statistic</strong></td><td>A number describing your <em>sample</em> (you calculate it).</td><td>Average height of your 26.</td></tr>
+<tr><td><strong>Probability sample</strong></td><td>Every element has a <em>known probability</em> of being selected (this is what lets us generalize).</td><td>A fair draw where every player has a known chance.</td></tr>
+<tr><td><strong>Statistical inference</strong></td><td>Estimating population parameters from sample statistics.</td><td>Judging the whole league from your scouting sample.</td></tr>
+</table>
+
+<h3>Sampling distributions & two key laws</h3>
+<p>Imagine taking <em>many</em> samples and writing down each one's mean. Those means form a <strong>sampling distribution of means</strong>. Two facts the exam loves:</p>
+<ul>
+<li><strong>The mean of the sampling distribution of means = the population mean.</strong> (On average, samples aim at the truth.)</li>
+<li><strong>Central Limit Theorem:</strong> no matter the shape of the raw data, the sampling distribution of means becomes <em>normal</em> (bell-shaped) as sample size grows (n &gt; ~121). Hook: average enough random squads and the averages always pile into a bell curve.</li>
+<li><strong>Law of Large Numbers:</strong> the larger the sample, the smaller the standard error — i.e., the better your estimate of the parameter.</li>
+</ul>
+
+<h4>Standard error &amp; variability</h4>
+<p><strong>Standard error</strong> = how much sample estimates typically bounce around the true value. <strong>Bigger sample → smaller standard error → more precise.</strong> <strong>Variability</strong> just means the <em>spread</em> of the observed values.</p>
+
+<div class="exam"><span class="tag">On the exam</span> "A sample is a subset of a ___" → <strong>population</strong>. "Mean of a sampling distribution of means" → <strong>equal to the population mean</strong>. "Parameters describe ___" → <strong>populations</strong>. "Estimation of population parameters from sample statistics" → <strong>statistical inference</strong>. "Larger sample, ___ standard error" → <strong>smaller</strong>. "n&gt;121 makes it normal" → <strong>Central Limit Theorem</strong>.</div>
+`,
+cards:[
+ ['Population vs. Sample','Population = the whole group; Sample = a subset you actually measure.'],
+ ['Parameter vs. Statistic','Parameter describes the POPULATION (unknown); Statistic describes your SAMPLE (calculated).'],
+ ['Probability sample','Every element has a KNOWN probability of being selected.'],
+ ['Statistical inference','Estimating population parameters from sample statistics.'],
+ ['Central Limit Theorem','As n grows, the sampling distribution of means becomes normal — whatever the raw data\'s shape.'],
+ ['Law of Large Numbers','Larger sample → smaller standard error → better estimate of the parameter.'],
+ ['Standard error','How much sample estimates typically vary from the true value; shrinks as n grows.'],
+ ['Mean of sampling distribution','Equals the population mean.']
+]},
+
+/* 7 ------------------------------------------------------ */
+{id:'s7',n:7,title:'Distributions & Z-scores — the bell curve',html:`
+<p>The <strong>normal distribution</strong> (the "bell curve") is the backbone of the whole course. You don't need to compute anything for the theory questions — just know its <em>shape</em> and <em>logic.</em></p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Measure the height of thousands of players: a few very short, a few very tall, and most clustered in the middle. Plot it and you get a symmetric bell — the normal distribution.</div>
+
+<h3>Key facts</h3>
+<ul>
+<li><strong>It's symmetrical.</strong> That's why one Z-table works for both positive and negative Z-scores — the two halves mirror each other.</li>
+<li><strong>Z-score</strong> = how many standard deviations a value sits above (+) or below (−) the mean. It's just a "how unusual is this?" score. A striker 2 SDs above the mean in goals is genuinely elite.</li>
+<li><strong>Skew:</strong> if a few extreme <em>low</em> scores stretch the tail left → <strong>negatively skewed</strong> (e.g., an easy test where a few bombed). A few extreme <em>high</em> scores stretch it right → <strong>positively skewed.</strong> The tail points the way it's named.</li>
+<li><strong>The empirical rule:</strong> about 95% of values fall within ±2 standard deviations of the mean. Anything beyond that is a candidate <strong>outlier</strong> — a value markedly different from the rest.</li>
+</ul>
+
+<div class="exam"><span class="tag">On the exam</span> "One table works for + and − Z-scores because the normal distribution is ___" → <strong>symmetrical in shape</strong>. "Easy test, a few very low scores → distribution is ___" → <strong>negatively skewed</strong>. "A score markedly different from the others" → <strong>an outlier</strong>. "The bell curve illustrates" → <strong>normal distribution</strong>. "Sum of all deviations from the mean" → <strong>zero</strong> (they always cancel out).</div>
+<div class="tip"><span class="tag">No-math reasoning for outlier questions</span> They usually want: "Is any value more than 2 standard deviations from the mean?" If yes → outlier; if no → none. You're comparing, not crunching.</div>
+`,
+cards:[
+ ['Normal distribution','The symmetric bell curve; most values cluster near the mean.'],
+ ['Why one Z-table works both ways','The normal distribution is symmetrical.'],
+ ['Z-score','How many standard deviations a value is above (+) or below (−) the mean.'],
+ ['Negatively skewed','A few extreme LOW values stretch the tail to the left (e.g., easy test, a few bombed).'],
+ ['Outlier','A value markedly different from the rest; often beyond ±2 SD (empirical rule).'],
+ ['Sum of deviations from the mean','Always equals zero.']
+]},
+
+/* 8 ------------------------------------------------------ */
+{id:'s8',n:8,title:'Confidence Intervals — the honest estimate',html:`
+<p>Instead of pretending one sample gives the exact truth, we give an honest <em>range</em>: "the true value is probably in here."</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> A scout won't say "this stadium holds exactly 61,412." He says "I'm 95% confident it's between 60,000 and 63,000." That range is a <strong>confidence interval</strong>: a best guess (point estimate) plus-or-minus a margin of error.</div>
+
+<ul>
+<li><strong>Structure:</strong> confidence interval = point estimate <em>± margin of error.</em></li>
+<li><strong>A 95% confidence interval</strong> is the range you are 95% confident contains the true population value.</li>
+<li><strong>"Level of confidence"</strong> tells you how confident you are that you <em>did not make a Type I error</em> (didn't wrongly claim something that isn't true).</li>
+<li>Higher confidence (99% vs 90%) → wider interval (more cautious). Bigger sample → narrower interval (more precise).</li>
+</ul>
+
+<div class="exam"><span class="tag">On the exam</span> "A confidence interval is a point estimate ___" → <strong>plus and minus a margin of error</strong>. "A 99% confidence interval is the region ___" → <strong>you are 99% confident includes the true population mean</strong>. "The level of confidence asserts how confident we are that we ___" → <strong>did not make a Type I error</strong>.</div>
+<div class="tip"><span class="tag">Interpreting one in a sentence</span> "I am 95% confident that the true [DV] in the whole population is between [low] and [high]." That sentence pattern is worth easy points on interpretation questions.</div>
+`,
+cards:[
+ ['Confidence interval','A point estimate ± a margin of error — an honest range for the true value.'],
+ ['95% confidence interval','The range you are 95% confident contains the true population value.'],
+ ['Level of confidence','How confident you are that you did NOT make a Type I error.'],
+ ['Higher confidence level','Produces a WIDER interval (more cautious).'],
+ ['Bigger sample','Produces a NARROWER (more precise) interval.']
+]},
+
+/* 9 ------------------------------------------------------ */
+{id:'s9',n:9,title:'Hypothesis Testing — VAR and the two errors',html:`
+<p>Hypothesis testing is a courtroom for your prediction. We start by assuming the <strong>null hypothesis</strong> (no relationship) is true, then ask: is the evidence strong enough to reject it?</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Think <strong>VAR reviewing a penalty shout.</strong> The default assumption (null) is "no foul." Only if the video evidence is convincing enough do we overturn it and "reject the null" by awarding the penalty.</div>
+
+<h3>p vs. alpha — the one rule to never forget</h3>
+<ul>
+<li><strong>Alpha (α)</strong> = your threshold for "convincing enough" (how strict the ref is — often .05). It's the risk of a Type I error you'll accept.</li>
+<li><strong>p-value</strong> = how likely your result could've happened by pure chance if the null were true (how "suspicious" the play looks).</li>
+<li><strong>THE RULE:</strong> <span class="pill">If p &lt; α → REJECT the null</span> (evidence is strong; there's a relationship). <span class="pill">If p &gt; α → FAIL to reject the null</span> (not convincing enough).</li>
+</ul>
+<div class="watch"><span class="tag">Memory line</span> "If p is low, the null must go." Low p (below alpha) = reject the null.</div>
+
+<h3>The two errors (guaranteed exam question)</h3>
+<table class="t">
+<tr><th>Error</th><th>Definition</th><th>Soccer analogy</th></tr>
+<tr><td><strong>Type I error</strong></td><td>Rejecting a <em>true</em> null — seeing a relationship that isn't really there (a false positive).</td><td>Red-carding an <em>innocent</em> player. The ref punished a foul that never happened.</td></tr>
+<tr><td><strong>Type II error</strong></td><td>Failing to reject a <em>false</em> null — missing a relationship that <em>is</em> really there (a false negative).</td><td>VAR <em>misses</em> a real handball. A true foul goes unpunished.</td></tr>
+</table>
+<div class="tip"><span class="tag">How to reduce a Type II error</span> Collect a <strong>bigger sample.</strong> More data = more power to catch real relationships. (This is the standard answer on the short-answer version.)</div>
+
+<div class="exam"><span class="tag">On the exam</span> "If p is less than alpha, we ___" → <strong>reject the null</strong>. "Type I error is ___" → <strong>rejecting a true null hypothesis</strong>. "Type II error is ___" → <strong>failing to reject a false null hypothesis</strong>. "How do you address a Type II error?" → <strong>increase sample size</strong>.</div>
+`,
+cards:[
+ ['Null hypothesis','The default claim that there is NO relationship — what we try to reject.'],
+ ['Alpha (α)','The significance threshold / accepted risk of a Type I error (e.g., .05).'],
+ ['p-value','Probability the result happened by chance if the null were true.'],
+ ['Decision rule','If p < α → reject the null. If p > α → fail to reject. "If p is low, the null must go."'],
+ ['Type I error','Rejecting a TRUE null — a false positive (red-carding an innocent player).'],
+ ['Type II error','Failing to reject a FALSE null — a false negative (missing a real handball).'],
+ ['Fix for Type II error','Increase the sample size.']
+]},
+
+/* 10 ------------------------------------------------------ */
+{id:'s10',n:10,title:'Relationships — existence, form, degree, significance',html:`
+<p>When two variables are related, the exam asks about <em>four</em> separate questions you can ask about that relationship. Keeping them straight is huge for the final.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Analyzing "does possession lead to goals?" you'd ask: Is there a link at all? Which way does it go? How strong is it? And can we trust it beyond this one match? Those are exactly the four properties below.</div>
+
+<table class="t">
+<tr><th>Property</th><th>The question it answers</th></tr>
+<tr><td><strong>Existence</strong></td><td>Is there any relationship at all between the variables?</td></tr>
+<tr><td><strong>Form (direction)</strong></td><td>When the IV goes up, does the DV go up or down? → <strong>positive</strong> (up-up / down-down) or <strong>negative</strong> (one up, other down).</td></tr>
+<tr><td><strong>Degree (strength)</strong></td><td>How effectively do values of the IV predict values of the DV? (Weak vs. strong.)</td></tr>
+<tr><td><strong>Significance</strong></td><td>Can we infer the relationship seen in the sample also exists in the whole population?</td></tr>
+</table>
+
+<div class="tip"><span class="tag">Direction cheat</span> <strong>Positive</strong> relationship = both move the <em>same</em> way (more training → more goals). <strong>Negative</strong> relationship = they move <em>opposite</em> ways (more fouls → fewer minutes played).</div>
+
+<div class="exam"><span class="tag">On the exam</span> "Addresses: does the DV increase or decrease as the IV increases?" → <strong>form</strong>. "How effectively do IV values predict DV values?" → <strong>degree</strong>. "Can we infer it holds in the population?" → <strong>significance</strong>. "Increase in one relates to increase in another" → <strong>positive</strong>. "Increase in one relates to a decrease in another" → <strong>negative</strong>. "One more year of education = +$1,000 income" → that's the <strong>slope of the regression line</strong>.</div>
+`,
+cards:[
+ ['Existence','Is there any relationship between the two variables at all?'],
+ ['Form (direction)','Does the DV go up or down as the IV rises? Positive or negative.'],
+ ['Degree (strength)','How well do IV values predict DV values? Weak vs. strong.'],
+ ['Significance','Can we infer the sample relationship also holds in the population?'],
+ ['Positive relationship','Both variables move in the SAME direction.'],
+ ['Negative relationship','The variables move in OPPOSITE directions.']
+]},
+
+/* 11 ------------------------------------------------------ */
+{id:'s11',n:11,title:'Chi-Square (χ²) — testing the crosstab',html:`
+<p><strong>Chi-square (χ²)</strong> is the test for whether two <em>categorical</em> (nominal/ordinal) variables are related. It compares what you actually <em>observed</em> against what you'd <em>expect</em> if there were no relationship.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> You expect a coin-toss to decide kickoff 50/50. If across 100 matches one captain wins the toss 80 times, the gap between <strong>observed</strong> (80) and <strong>expected</strong> (50) is so big you suspect something real is going on. Chi-square measures exactly that gap.</div>
+
+<ul>
+<li><strong>Main idea:</strong> test how well the pattern of <em>observed</em> frequencies fits the <em>expected</em> pattern.</li>
+<li><strong>The bigger the gap</strong> between observed and expected frequencies, <strong>the bigger χ²</strong> gets (and the more likely the relationship is real).</li>
+<li><strong>Degrees of freedom</strong> for a crosstab = <strong>(columns − 1) × (rows − 1)</strong>. Example: 5 columns, 3 rows → (4)(2) = 8.</li>
+<li>Chi-square establishes the <em>existence</em> and <em>significance</em> of a relationship between two nominal variables — but <strong>NOT its strength.</strong></li>
+</ul>
+
+<h3>Why χ² can't measure strength — its assumptions</h3>
+<p>This is a favorite short-answer. The assumptions: (1) you hypothesized the relationship <em>in advance</em>; (2) the sample was <em>random</em>; (3) no more than 25% of cells have an expected frequency below 5; and critically (4) <strong>χ² grows as the sample grows.</strong> Because a bigger sample inflates χ², even a <em>trivial</em> relationship can look "significant" with enough data. So χ² tells you <em>whether</em> a relationship likely exists, never <em>how strong</em> it is. (A non-significant χ² usually means the relationship is so weak it could be chance — not that the sample was bad.)</p>
+
+<div class="exam"><span class="tag">On the exam</span> "Main idea of chi-square" → <strong>test how well observed frequencies fit expected frequencies</strong>. "As observed–expected gap increases, χ² ___" → <strong>increases</strong>. "df for chi-square" → <strong>(columns−1)(rows−1)</strong>. "χ² is based on the difference between the ___ in a crosstab" → <strong>observed and expected frequencies</strong>. "Existence of a relationship between two nominal variables is established using ___" → <strong>the chi-square test</strong>.</div>
+`,
+cards:[
+ ['Chi-square — main idea','Tests how well the observed frequencies fit the expected frequencies.'],
+ ['χ² and the observed–expected gap','The bigger the gap, the larger χ² becomes.'],
+ ['Degrees of freedom (crosstab)','(columns − 1) × (rows − 1).'],
+ ['What χ² can/can\'t do','Shows a relationship EXISTS and is significant — but NOT how strong it is.'],
+ ['Why χ² isn\'t a strength measure','It grows with sample size, so even trivial relationships can look significant.'],
+ ['χ² is calculated from…','The difference between observed and expected frequencies.']
+]},
+
+/* 12 ------------------------------------------------------ */
+{id:'s12',n:12,title:'Measures of Association — how strong is it, really?',html:`
+<p>Since χ² can't tell you <em>strength</em>, we use a <strong>measure of association</strong>. The trick is matching the right measure to the variables' level of measurement — and knowing which two the professor tells you to <em>never</em> use.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Knowing two players are "linked" (they combine on the pitch) isn't enough — you want to know <em>how strong</em> the partnership is. A measure of association is the strength rating, from 0 (nothing) to 1 (perfectly linked).</div>
+
+<table class="t">
+<tr><th>Measure</th><th>Use it for</th><th>Verdict</th></tr>
+<tr><td><strong>Lambda (λ)</strong></td><td>Nominal data (a PRE measure).</td><td>❌ <strong>NEVER use it.</strong> If the DV's modal category is the same across all IV categories, λ = 0 even when a real relationship exists.</td></tr>
+<tr><td><strong>Cramer's V</strong></td><td>Nominal data (any table size). Based on χ².</td><td>✅ The go-to for nominal.</td></tr>
+<tr><td><strong>Phi (Φ)</strong></td><td>Nominal, but <em>only</em> when a variable is a 2-category dichotomy (2×2 tables). Based on χ².</td><td>✅ Use only with a dichotomy.</td></tr>
+<tr><td><strong>Gamma (γ)</strong></td><td>Ordinal data (a PRE measure).</td><td>❌ <strong>Avoid — it over-inflates</strong> strength because it ignores tied pairs.</td></tr>
+<tr><td><strong>Tau-b (τb)</strong></td><td>Ordinal-by-ordinal data; gives strength AND direction.</td><td>✅ The go-to for ordinal.</td></tr>
+<tr><td><strong>Somers' D</strong></td><td>Ordinal data; a more conservative alternative to Gamma.</td><td>✅ Acceptable ordinal choice.</td></tr>
+</table>
+
+<h3>PRE — Proportional Reduction of Error</h3>
+<p>Several of these are <strong>PRE measures</strong>: they tell you the <em>proportion of error in predicting the DV that you eliminate once you know the IV.</em> Hook: "How much better can I predict a player's goals once I know their position?" A PRE of 0 = knowing the IV doesn't help at all; closer to 1 = it helps a lot.</p>
+
+<div class="tip"><span class="tag">Decision flow</span> <strong>Nominal?</strong> → Cramer's V (Phi if a dichotomy). <strong>Ordinal?</strong> → Tau-b (or Somers' D). <strong>Never</strong> → Lambda (can be falsely 0) or Gamma (over-inflates). <strong>Interval/ratio?</strong> → Pearson's r (next section).</div>
+
+<div class="exam"><span class="tag">On the exam</span> "What is Lambda, and why not use it?" → a nominal PRE measure that equals 0 when the DV's modal category repeats across IV categories; use <strong>Cramer's V or Phi</strong> instead. "Why not Gamma?" → it <strong>over-inflates association by ignoring tied pairs</strong>; use <strong>Tau-b or Somers' D</strong>.</div>
+`,
+cards:[
+ ['Lambda (λ)','Nominal PRE measure — NEVER use it; it can be 0 even when a relationship exists.'],
+ ['Cramer\'s V','The go-to strength measure for nominal data (based on χ²).'],
+ ['Phi (Φ)','Nominal strength measure used ONLY when a variable is a dichotomy (2×2).'],
+ ['Gamma (γ)','Ordinal PRE measure — avoid; it over-inflates strength by ignoring tied pairs.'],
+ ['Tau-b (τb)','The go-to for ordinal-by-ordinal data; gives strength AND direction.'],
+ ['PRE (proportional reduction of error)','Proportion of prediction error in the DV eliminated once you know the IV.'],
+ ['Somers\' D','A conservative ordinal alternative to Gamma.']
+]},
+
+/* 13 ------------------------------------------------------ */
+{id:'s13',n:13,title:'t-tests & ANOVA — comparing squads',html:`
+<p>These tests compare <em>averages</em> across groups. The DV is an interval/ratio number (like goals); the grouping is categorical.</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> "Do teams that play a high press score more goals on average than teams that don't?" You're comparing group <em>means.</em> Two groups → t-test. Three or more groups → ANOVA.</div>
+
+<h3>t-test (difference of means)</h3>
+<ul>
+<li>Compares the means of <strong>two</strong> groups. The DV is <strong>interval/ratio</strong>; the IV is a <strong>dichotomy</strong> (2 categories).</li>
+<li><strong>Independent-samples</strong> t-test: two <em>separate</em> groups (pressing teams vs. non-pressing teams).</li>
+<li><strong>Paired-samples</strong> t-test: the <em>same</em> group measured twice — a <strong>test-retest / pretest–posttest</strong> design (a team's scoring before vs. after a new coach).</li>
+<li>Rejecting the null means the two sample means are so far apart they likely come from populations with genuinely different means.</li>
+<li><strong>Heteroscedasticity</strong> = the fancy word for two groups having <em>unequal variances</em> (one group's spread is much bigger). If one group's variance is more than ~2× the other's, don't assume equal variances.</li>
+</ul>
+
+<h3>ANOVA (Analysis of Variance)</h3>
+<ul>
+<li>Compares the means of <strong>three or more</strong> groups at once.</li>
+<li>It works by comparing <em>explained</em> variance (between groups) to <em>unexplained</em> variance (within groups) — the <strong>F-ratio.</strong> A high F-ratio → the group differences are likely <strong>significant.</strong></li>
+<li>Hook: comparing average goals across <em>all six</em> confederations at once — one test instead of many.</li>
+</ul>
+
+<div class="exam"><span class="tag">On the exam</span> "ANOVA is used to compare ___" → <strong>three or more group means</strong>. "ANOVA differs from a t-test in that ANOVA compares ___" → <strong>three+ groups vs. the t-test's two</strong>. "Test-retest / same people measured twice" → <strong>paired-samples difference of means</strong>. "In a t-test, the IV is at which level?" → <strong>dichotomy</strong>; "the DV?" → <strong>interval/ratio</strong>. "Two population variances appear unequal" → <strong>heteroscedasticity</strong>. "High ratio of explained to unexplained variance → relationship is likely ___" → <strong>significant</strong>.</div>
+`,
+cards:[
+ ['t-test','Compares the means of TWO groups. IV = dichotomy, DV = interval/ratio.'],
+ ['Independent vs. paired t-test','Independent = two separate groups; Paired = same group measured twice (test-retest).'],
+ ['ANOVA','Compares the means of THREE OR MORE groups at once.'],
+ ['F-ratio','Explained variance ÷ unexplained variance; high F → likely significant.'],
+ ['Heteroscedasticity','Two groups have unequal variances (unequal spread).'],
+ ['DV level in difference-of-means tests','Interval/ratio.']
+]},
+
+/* 14 ------------------------------------------------------ */
+{id:'s14',n:14,title:'Correlation & Regression — drawing the trend line',html:`
+<p>When <em>both</em> variables are interval/ratio, we measure how they move together (<strong>correlation</strong>) and build a line to predict one from the other (<strong>regression</strong>).</p>
+
+<div class="kick"><span class="tag">⚽ The analogy</span> Plot each player's training hours (X) against goals (Y). If the dots trend up together, that's <strong>positive correlation</strong>. Draw the single best-fit line through the cloud of dots — that's the <strong>regression line</strong>, your prediction tool.</div>
+
+<table class="t">
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><strong>Pearson's r</strong></td><td>The correlation coefficient for two interval/ratio variables. Runs from −1 to +1. The <em>sign</em> gives direction; the <em>size</em> gives strength.</td></tr>
+<tr><td><strong>r² (r-squared)</strong></td><td>The proportion of variation in the DV <em>explained</em> by the IV. r² = 0.46 → "46% of the variation in Y is explained by X."</td></tr>
+<tr><td><strong>Regression line</strong></td><td>The <em>line of best fit</em> among the X–Y coordinates — used to generate the best predictions of the DV.</td></tr>
+<tr><td><strong>Slope (b or β)</strong></td><td>How much Y changes for each one-unit increase in X. "One more year of education = +$1,000 income" is a slope.</td></tr>
+<tr><td><strong>Intercept (α)</strong></td><td>The predicted value of Y when X = 0 — where the line crosses the Y-axis.</td></tr>
+</table>
+
+<div class="tip"><span class="tag">Direction of an interval/ratio relationship</span> Read it from the <strong>sign of r</strong> AND the <strong>sign of b</strong> (they agree). Positive = up together; negative = opposite.</div>
+
+<div class="exam"><span class="tag">On the exam</span> "The regression line is ___" → <strong>the line of best fit among the X–Y coordinates</strong>. "To generate best estimates of the DV we use ___" → <strong>the regression equation</strong>. "Direction of an interval/ratio relationship is shown by ___" → <strong>the sign of r and the sign of b</strong>. "In a scatterplot the vertical axis is ___" → <strong>the value of Y</strong>. "One more unit of X → +$1,000 in Y" → <strong>the slope</strong>. "To use a regression line, variables must be ___" → <strong>interval/ratio</strong>. "r² of 0.38 means ___" → <strong>38% of the variation in Y is explained by X</strong>.</div>
+`,
+cards:[
+ ['Pearson\'s r','Correlation for two interval/ratio variables; −1 to +1. Sign = direction, size = strength.'],
+ ['r² (r-squared)','The proportion of variation in the DV explained by the IV.'],
+ ['Regression line','The line of best fit through the X–Y points; used to predict the DV.'],
+ ['Slope (b / β)','How much Y changes per one-unit increase in X.'],
+ ['Intercept (α)','Predicted Y when X = 0; where the line crosses the Y-axis.'],
+ ['Direction of interval/ratio relationship','Read from the sign of r and the sign of b.'],
+ ['Scatterplot vertical axis','The value of Y (the dependent variable).']
+]},
+
+/* 15 ------------------------------------------------------ */
+{id:'s15',n:15,title:'Bonus trivia the professor loves',html:`
+<p>Past exams end with the <em>same</em> bonus questions. Free points if you memorize them.</p>
+<table class="t">
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Who was "Student"?</td><td><strong>William Sealy Gosset</strong></td></tr>
+<tr><td>Where did he work?</td><td><strong>The Guinness Brewery in Dublin, Ireland</strong> (he published under the pen name "Student" because Guinness treated his work as a trade secret).</td></tr>
+<tr><td>What statistic did he create?</td><td><strong>The t-statistic / Student's t-test</strong></td></tr>
+<tr><td>Who created SPSS?</td><td><strong>Norman Nie</strong> (later sold to IBM).</td></tr>
+<tr><td>Laplace's 3 government employers (older bonus)</td><td><strong>Louis XVI, Napoleon Bonaparte, and Louis XVIII</strong> (the Bourbon Restoration).</td></tr>
+</table>
+<div class="kick"><span class="tag">⚽ Memory hook</span> Picture a brewer named Gosset sipping a Guinness in Dublin, inventing the "t" — like a striker perfecting one signature move. Silly image, sticky memory.</div>
+`,
+cards:[
+ ['Who was "Student"?','William Sealy Gosset.'],
+ ['Where did Gosset work?','The Guinness Brewery in Dublin, Ireland.'],
+ ['What did Gosset create?','The t-statistic / Student\'s t-test.'],
+ ['Who created SPSS?','Norman Nie (later sold to IBM).']
+]},
+
+/* 16 ------------------------------------------------------ */
+{id:'s16',n:16,title:'🏆 One-page cheat sheet (build your allowed note sheet from this)',html:`
+<p>You're allowed <strong>one 8.5×11 double-sided sheet</strong> of notes in the exam. Here's the distilled core — copy the bits you find hardest.</p>
+<div class="tip" style="font-size:.9rem">
+<strong>Scientific method:</strong> empirical, transmissible, replicable, intersubjective, nonnormative, parsimonious (simplest), falsifiable, deterministic. 4 hallmarks = empiricism, intersubjectivity, explanation, determinism.<br>
+<strong>Ethics — Belmont:</strong> Respect for Persons (autonomy + protect vulnerable + informed consent), Beneficence (do no harm; max benefit/min risk), Justice (fair selection). Consent needs the research's <em>purpose</em>. Consent = information + comprehension + voluntariness.<br>
+<strong>Variables:</strong> IV = cause; DV = effect; intervening = between; spuriousness = 3rd variable causing both; operationalization = concept → measurable indicator.<br>
+<strong>Hypothesis flaws:</strong> normative, tautology, proper names, categories-of-DV, no direction. Null = "no relationship."<br>
+<strong>Measurement:</strong> Nominal (names) &lt; Ordinal (ranked) &lt; Interval (equal gaps, no true 0) &lt; Ratio (true 0). Dichotomy = 2 categories. Ratio = most info.<br>
+<strong>Inference:</strong> population/sample, parameter(pop)/statistic(sample), probability sample = known chance. Mean of sampling dist = pop mean. CLT: big n → normal. Law of large numbers: big n → small standard error.<br>
+<strong>Normal curve:</strong> symmetrical (so one Z-table). Negative skew = low outliers pull left. Outlier ≈ beyond ±2 SD. Deviations from mean sum to 0.<br>
+<strong>Confidence interval:</strong> point estimate ± margin of error; "95% confident true value is in here"; level of confidence = didn't make Type I error.<br>
+<strong>Testing:</strong> if p &lt; α → reject null ("if p is low, the null must go"). Type I = reject a true null (false positive). Type II = fail to reject a false null (false negative); fix with bigger sample.<br>
+<strong>Relationship properties:</strong> existence, form (direction: +/−), degree (strength), significance (holds in population).<br>
+<strong>Chi-square:</strong> observed vs expected; bigger gap → bigger χ²; df = (col−1)(row−1); shows existence/significance, NOT strength (grows with n).<br>
+<strong>Association:</strong> Nominal → Cramer's V (Phi if dichotomy); Ordinal → Tau-b/Somers' D. NEVER Lambda (can be 0) or Gamma (over-inflates). Interval/ratio → Pearson's r. PRE = error in predicting DV reduced by knowing IV.<br>
+<strong>Group means:</strong> t-test = 2 groups (IV dichotomy, DV interval/ratio); paired = test-retest; ANOVA = 3+ groups (F-ratio); heteroscedasticity = unequal variances.<br>
+<strong>Regression:</strong> line of best fit; slope b = ΔY per unit X; intercept α = Y at X=0; r (−1..+1) direction+strength; r² = % variation explained. Y is the vertical axis.<br>
+<strong>Bonus:</strong> Gosset = "Student", Guinness/Dublin, t-statistic. Norman Nie = SPSS.
+</div>
+`,
+cards:[]},
+];
+
+/* Practice test (final section) — pulled from real past exams */
+const FINAL_QUIZ = [
+ {stem:'A variable that is presumed to cause a change in another variable is called a(n):',
+  opts:['Categorical variable','Dependent variable','Independent variable','Intervening variable'],ans:2,
+  why:'The independent variable (IV) is the presumed cause; the dependent variable is the effect.',src:'Midterm F2011'},
+ {stem:'A ______ is a subset of a _________.',
+  opts:['Sample, population','Population, sample','Statistic, parameter','Parameter, statistic'],ans:0,
+  why:'A sample is a subset of a population. (A statistic summarizes a sample; a parameter summarizes a population.)',src:'Midterm F2011'},
+ {stem:'The mean of a sampling distribution of means is:',
+  opts:['Greater than the population mean','Equal to the population mean','Less than the population standard deviation','None of the above'],ans:1,
+  why:'On average, sample means center on the truth — the sampling distribution\'s mean equals the population mean.',src:'Multiple exams'},
+ {stem:'The statement that scientific knowledge must be transmissible means that:',
+  opts:['Data must be made available so others can verify claims','Findings should be public to add to human knowledge','The methods must be spelled out in enough detail that others can replicate the findings','Theories should be as simple as possible'],ans:2,
+  why:'Transmissibility = your methods are detailed enough for someone else to repeat your exact steps.',src:'Midterms SU/SP2013, FA2013'},
+ {stem:'The term parsimony refers to:',
+  opts:['The most complex explanation','The broadest explanation','The least intrusive explanation','The simplest explanation'],ans:3,
+  why:'Parsimony = prefer the simplest adequate explanation. "The simplest solution is best."',src:'Midterms SU2013/SP2013'},
+ {stem:'A variable that simultaneously seems to cause both the independent and dependent variables is called a(n):',
+  opts:['conditional variable','intervening variable','source of spuriousness','antecedent variable'],ans:2,
+  why:'A source of spuriousness causes both the IV and DV, making them look related when they aren\'t.',src:'Midterm SU2013/SP2014'},
+ {stem:'Which of the following is necessary in obtaining informed consent?',
+  opts:['A description of the statistical analyses','A description of the purpose of the research','A description of the reliability and validity of test instruments','A list of the researcher\'s publications'],ans:1,
+  why:'Consent requires that the subject understand the research\'s purpose (part of the "information" element).',src:'Multiple midterms'},
+ {stem:'In a hypothesis test, if p is less than alpha, we would:',
+  opts:['fail to reject the null hypothesis','recalculate the standard error','change the level of significance','reject the null hypothesis'],ans:3,
+  why:'"If p is low, the null must go." p < α → reject the null.',src:'Nearly every final'},
+ {stem:'Type II error is:',
+  opts:['rejecting a true null hypothesis','failing to reject a false null hypothesis','hypothesizing the wrong direction','miscalculating the standard error'],ans:1,
+  why:'Type II = failing to reject a FALSE null — missing a real relationship (a false negative). Fix: bigger sample.',src:'Finals SU2013/FA2012/FA2013'},
+ {stem:'The same table is used to find both positive and negative Z-scores. This is possible because a normal distribution is:',
+  opts:['bimodal','symmetrical in shape','both left and right skewed','asymptotic in shape'],ans:1,
+  why:'The normal curve is symmetrical, so the two halves mirror each other.',src:'Multiple finals'},
+ {stem:'Regardless of the raw score distribution, the sampling distribution of means becomes normal when n>121. This principle is:',
+  opts:['the Law of Large Numbers','the Central Limit Theorem','the Pythagorean Theorem','inclusiveness'],ans:1,
+  why:'The Central Limit Theorem: with a large enough n, the sampling distribution of means is normal.',src:'Finals SU2012/Sp2012'},
+ {stem:'The main idea of a chi-square test is that you:',
+  opts:['test the proportion of variance accounted for','compare population means','compare population variances','test how well observed frequencies fit an expected pattern'],ans:3,
+  why:'Chi-square compares observed vs. expected frequencies.',src:'Finals SU2013/SP2014'},
+ {stem:'A researcher observes a crosstab with 5 columns and 3 rows. How many degrees of freedom?',
+  opts:['5','8','15','Too little information'],ans:1,
+  why:'df = (columns−1)(rows−1) = (5−1)(3−1) = 8.',src:'Final SU2013'},
+ {stem:'Analysis of variance (ANOVA) is used to compare:',
+  opts:['joint frequencies of two nominal variables','sample proportions','three or more group means','a and b'],ans:2,
+  why:'ANOVA compares the means of three or more groups (a t-test handles two).',src:'Finals Sp2012/FA2012'},
+ {stem:'The regression line is:',
+  opts:['the summary of X and Y coordinates','the correlation','the point where the means cross','the line of best fit among the coordinates of X and Y'],ans:3,
+  why:'The regression line is the line of best fit through the X–Y points.',src:'Multiple finals'},
+ {stem:'Researchers measure a variable twice for the same individuals with an intervention in between. They\'d use:',
+  opts:['analysis of variance','an independent-samples difference of means test','a paired-samples difference of means test','a single-sample means test'],ans:2,
+  why:'Same people measured twice (test-retest) = a paired-samples t-test.',src:'Finals SP2013/SP2014'},
+ {stem:'The preference for simplicity, "the simplest solution is the best," is called:',
+  opts:['reductionism','oversimplification','diminutive sampling','parsimony'],ans:3,
+  why:'Parsimony — favor the simplest adequate explanation.',src:'Multiple finals'},
+ {stem:'When an increase in one variable is related to a decrease in another, there is a ___ relationship.',
+  opts:['negative','strong','weak','positive'],ans:0,
+  why:'Opposite directions = a negative relationship.',src:'Finals SP2013/FA2012'},
+ {stem:'A conjectural statement specifying a directional relationship between two variables is a:',
+  opts:['conjectural proposition','statistical theory','research hypothesis','statement of expectation'],ans:2,
+  why:'That is the definition of a research (alternative) hypothesis.',src:'Final SP2014'},
+ {stem:'To use the formula for a regression line, the variables must be:',
+  opts:['positive','nominal or ordinal','interval/ratio','between 0 and 1'],ans:2,
+  why:'Correlation and regression require interval/ratio variables.',src:'Final SU2012'},
+];
+</script>
+
+<script>
+/* =========================================================
+   RENDER
+   ========================================================= */
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+
+function renderSections(){
+  const root=document.getElementById('content');
+  SECTIONS.forEach(s=>{
+    const sec=el('section','topic');sec.id=s.id;
+    const btn=el('button','head');
+    btn.innerHTML=`<span class="num">${s.n}</span><span>${s.title}</span><span class="chev">▶</span>`;
+    btn.onclick=()=>sec.classList.toggle('open');
+    const body=el('div','body');
+    body.innerHTML=s.html;
+    // flashcards
+    if(s.cards && s.cards.length){
+      body.appendChild(el('h3',null,'🃏 Flashcards — tap to flip'));
+      const deck=el('div','deck');
+      s.cards.forEach(c=>{
+        const fc=el('div','fc');
+        fc.innerHTML=`<div class="fc-inner">
+          <div class="fc-face fc-front">${c[0]}<span class="fc-hint">tap to flip</span></div>
+          <div class="fc-face fc-back">${c[1]}</div></div>`;
+        fc.onclick=()=>fc.classList.toggle('flip');
+        deck.appendChild(fc);
+      });
+      body.appendChild(deck);
+    }
+    sec.appendChild(btn);sec.appendChild(body);
+    root.appendChild(sec);
+  });
+  // Final quiz section
+  const qsec=el('section','topic');qsec.id='s17';
+  const qbtn=el('button','head');
+  qbtn.innerHTML=`<span class="num">17</span><span>🎯 Final practice test — real questions from past exams</span><span class="chev">▶</span>`;
+  qbtn.onclick=()=>qsec.classList.toggle('open');
+  const qbody=el('div','body');
+  qbody.innerHTML=`<p>Twenty questions drawn straight from the professor's past finals and midterms. Click an answer to check it — the explanation appears underneath. No score is saved; run it as many times as you like.</p>
+  <div class="controls"><button class="btn ghost" onclick="resetQuiz()">↺ Reset all</button></div>`;
+  const quizWrap=el('div','quiz');quizWrap.id='finalQuiz';
+  FINAL_QUIZ.forEach((q,qi)=>{
+    const card=el('div','q');card.dataset.qi=qi;
+    let opts=`<div class="stem">${qi+1}. ${q.stem}</div><ul class="opts">`;
+    q.opts.forEach((o,oi)=>{opts+=`<li data-oi="${oi}">${String.fromCharCode(65+oi)}) ${o}</li>`;});
+    opts+=`</ul><div class="why"><strong>Why:</strong> ${q.why}</div><div class="src">Seen on: ${q.src}</div>`;
+    card.innerHTML=opts;
+    card.querySelectorAll('.opts li').forEach(li=>{
+      li.onclick=()=>{
+        if(card.classList.contains('answered'))return;
+        const chosen=+li.dataset.oi;
+        card.classList.add('answered');
+        card.querySelectorAll('.opts li').forEach(x=>{
+          if(+x.dataset.oi===q.ans)x.classList.add('correct');
+        });
+        if(chosen!==q.ans)li.classList.add('wrong');
+      };
+    });
+    quizWrap.appendChild(card);
+  });
+  qbody.appendChild(quizWrap);
+  qsec.appendChild(qbtn);qsec.appendChild(qbody);
+  document.getElementById('content').appendChild(qsec);
+}
+function resetQuiz(){
+  document.querySelectorAll('#finalQuiz .q').forEach(c=>{
+    c.classList.remove('answered');
+    c.querySelectorAll('.opts li').forEach(x=>x.classList.remove('correct','wrong'));
+  });
+}
+function openAll(){document.querySelectorAll('.topic').forEach(t=>t.classList.add('open'));}
+function closeAll(){document.querySelectorAll('.topic').forEach(t=>t.classList.remove('open'));}
+renderSections();
+/* open the first section by default so it doesn't look empty */
+document.querySelector('.topic')?.classList.add('open');
+</script>
+</body>
+</html>
